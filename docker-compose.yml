@@ -1,0 +1,21 @@
+version: '3'
+services:
+  express-static:
+    build: ./express
+    ports: 
+      - "3000:3000"
+    volumes:
+      - ./public:/public
+  nginx-static:
+    build: ./nginx
+    ports:
+      - "3001:90"
+    volumes:
+      - ./public:/var/www/html
+      - ./public:/usr/share/nginx/html
+  apache-static:
+    build: ./apache
+    ports:
+      - "3002:80"
+    volumes:
+      - ./public:/usr/local/apache2/htdocs
